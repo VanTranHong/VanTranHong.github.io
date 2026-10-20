@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rethinking AI Agent Security – Van Hong Tran</title>
+  <meta name="author" content="Van Hong Tran">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: #2d2d2d;
+      background: #ffffff;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ebebeb;
+      z-index: 100;
+      padding: 0 40px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-name {
+      font-weight: 600;
+      font-size: 0.93em;
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    .nav-links a {
+      margin-left: 22px;
+      color: #666;
+      text-decoration: none;
+      font-size: 0.87em;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #1a1a1a; }
+    .nav-links a.active { color: #1a1a1a; font-weight: 600; }
+
+    /* ── Article container ── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 40px 80px;
+    }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85em;
+      font-weight: 500;
+      color: #888;
+      text-decoration: none;
+      margin-bottom: 40px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #1a1a1a; text-decoration: none; }
+    .back-link::before { content: "←"; }
+
+    /* ── Article header ── */
+    .article-header { margin-bottom: 40px; }
+
+    .article-tags { margin-bottom: 14px; }
+    .article-tag {
+      display: inline-block;
+      background: #f0f4ff;
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-size: 0.78em;
+      color: #2563a8;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-right: 6px;
+    }
+
+    .article-title {
+      font-size: 1.85em;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #111;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+
+    .article-subtitle {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 1.05em;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .article-meta {
+      font-size: 0.83em;
+      color: #aaa;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .article-meta span { display: flex; align-items: center; gap: 5px; }
+
+    /* ── Article body ── */
+    .article-body {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.02em;
+      line-height: 1.85;
+      color: #333;
+    }
+
+    .article-body p { margin-bottom: 1.4em; }
+
+    .article-body h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2em;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #111;
+      margin: 2.2em 0 0.8em;
+      padding-bottom: 0.4em;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .article-body h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1em;
+      font-weight: 600;
+      color: #222;
+      margin: 1.8em 0 0.6em;
+    }
+
+    .article-body strong { color: #111; font-weight: 600; }
+
+    .article-body a { color: #2563a8; text-decoration: underline; text-decoration-color: #c8d9f0; }
+    .article-body a:hover { text-decoration-color: #2563a8; }
+
+    .article-body blockquote {
+      border-left: 3px solid #2563a8;
+      padding: 4px 0 4px 20px;
+      margin: 1.5em 0;
+      color: #555;
+      font-style: italic;
+    }
+
+    /* ── Callout box ── */
+    .callout {
+      background: #f8faff;
+      border: 1px solid #dbe8f8;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 1.8em 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.93em;
+      color: #2a4a7f;
+      line-height: 1.6;
+    }
+
+    /* ── Article footer ── */
+    .article-footer {
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid #f0f0f0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88em;
+      color: #888;
+    }
+    .article-footer a { color: #2563a8; }
+
+    /* ── Site footer ── */
+    .footer {
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid #ebebeb;
+      text-align: center;
+    }
+    .social-icons a {
+      color: #aaa;
+      font-size: 1.8em;
+      margin: 0 14px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .social-icons a:hover { color: #1a1a1a; }
+    .footer-credit { margin-top: 18px; font-size: 0.78em; color: #bbb; }
+    .footer-credit a { color: #bbb; }
+
+    @media (max-width: 620px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .container { padding: 40px 20px 60px; }
+      .article-title { font-size: 1.5em; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-name">Van Hong Tran</a>
+    <div class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#research">Research</a>
+      <a href="../index.html#publications">Publications</a>
+      <a href="../index.html#service">Service</a>
+      <a href="../index.html#awards">Awards</a>
+      <a href="../blog.html" class="active">Blog</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <a href="../blog.html" class="back-link">Back to Blog</a>
+
+    <div class="article-header">
+      <div class="article-tags">
+        <span class="article-tag">AI Security</span>
+        <span class="article-tag">AI Agents</span>
+        <span class="article-tag">Privacy</span>
+      </div>
+      <h1 class="article-title">Rethinking AI Agent Security: What Can We Learn from Computer Networks?</h1>
+      <p class="article-subtitle">AI agents are becoming increasingly autonomous. But how do we keep them secure when they can access sensitive data, communicate with external services, and make decisions on our behalf?</p>
+      <div class="article-meta">
+        <span><i class="fa-regular fa-calendar"></i> 2025</span>
+        <span><i class="fa-regular fa-clock"></i> 6 min read</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <p>Imagine asking an AI assistant to organize your next business trip. It checks your calendar, reads your emails, books flights, and coordinates meetings — all without requiring you to manage each step.</p>
+
+      <p>Now imagine that, while booking a hotel, it accidentally shares confidential meeting details with an external service. Or worse, a malicious webpage tricks it into sending sensitive information to an attacker.</p>
+
+      <p>These scenarios highlight a growing challenge: <strong>the same capabilities that make AI agents useful also make them difficult to secure.</strong></p>
+
+      <p>In our paper, <a href="https://arxiv.org/abs/2608.12172" target="_blank" rel="noopener noreferrer"><em>Rethinking Agent Security as a Networking Problem</em></a>, we explore a different way of addressing this challenge, drawing inspiration from decades of networking and systems security research.</p>
+
+      <div class="callout">
+        Our central idea is simple: <strong>Rather than trusting AI agents to secure themselves, we should build security mechanisms that independently control what they can do.</strong>
+      </div>
+
+      <h2>Why Can't We Simply Trust AI Agents to Behave Securely?</h2>
+
+      <p>Many existing defenses focus on making AI agents behave more safely — through better instructions, guardrails, or training.</p>
+
+      <p>These approaches are valuable, but they have a fundamental limitation: they often depend on the agent itself to recognize and avoid unsafe actions.</p>
+
+      <p>What happens when an agent misunderstands an instruction? Or when a malicious document convinces it to ignore its security guidelines? Even the most capable models can make mistakes or be manipulated.</p>
+
+      <p><strong>Security should not depend on an AI agent always making the right decision.</strong></p>
+
+      <p>This raises an important question: Can we design systems that remain secure even when the agent itself is unreliable?</p>
+
+      <h2>What Can Computer Networks Teach Us?</h2>
+
+      <p>Computer networks have faced a similar challenge for decades: enabling communication between devices without assuming that every device can be trusted.</p>
+
+      <p>Rather than relying on devices to police themselves, networks use firewalls, access controls, and independent enforcement mechanisms to restrict unauthorized communication.</p>
+
+      <p>AI agents operate in increasingly similar environments. They access files, invoke APIs, communicate with services, and exchange information with other agents.</p>
+
+      <p><strong>What if we treated these interactions like network traffic — subject to independent security policies and enforcement?</strong></p>
+
+      <p>This changes how we approach agent security. Instead of asking whether an agent can recognize an unsafe action, we ask whether the surrounding system can prevent that action from happening.</p>
+
+      <h2>Bringing Networking Principles to AI Agent Security</h2>
+
+      <p>Our work explores three principles for building more secure agent systems.</p>
+
+      <h3>1. Separate Security from Agent Reasoning</h3>
+
+      <p>In computer networks, the control plane defines communication policies, while the data plane enforces them.</p>
+
+      <p>We envision a similar separation for AI agents: a trusted security layer determines and enforces what actions are permitted, independently of the agent's reasoning.</p>
+
+      <p>An agent can decide what it <em>wants</em> to do, but <strong>it should not have the authority to decide what it is <em>allowed</em> to do.</strong></p>
+
+      <h3>2. Give Agents Only the Permissions They Need</h3>
+
+      <p>AI agents often receive broad access to tools and sensitive resources, even when their tasks require much less.</p>
+
+      <p>Drawing on the principle of least privilege, we argue that agents should receive narrowly scoped permissions for specific resources and operations.</p>
+
+      <p>For example, an agent may be allowed to read a confidential report and share a summary with authorized colleagues — but not delete the report or send it to outsiders. Limiting permissions reduces the damage an agent can cause if it makes a mistake or is compromised.</p>
+
+      <h3>3. Consider the Context of Every Action</h3>
+
+      <p>Not every technically permitted action is appropriate.</p>
+
+      <p>An agent might be authorized to read documents and send emails. But that doesn't mean it should share a confidential report with any recipient.</p>
+
+      <p>We therefore argue for combining <strong>deterministic security policies</strong> with <strong>context-aware reasoning</strong> that considers the sensitivity of information, the intended recipient, and the purpose of an action. This allows security mechanisms to go beyond simply asking <em>"Is this operation allowed?"</em> and consider <em>"Is this operation appropriate in this context?"</em></p>
+
+      <h2>What Would This Look Like in Practice?</h2>
+
+      <p>To bring these ideas together, our paper proposes a network-inspired architecture that places an independent security component — called a <strong>sidecar</strong> — alongside each AI agent.</p>
+
+      <p>Think of the sidecar as a security checkpoint. Whenever an agent attempts to access a resource, invoke a tool, or communicate with another service, the sidecar checks the action against policies defined by a trusted control plane.</p>
+
+      <p>Straightforward requests can be evaluated using deterministic rules, while more complex actions may require context-aware analysis. The sidecar can then allow, block, or constrain the action without relying on the agent to enforce the decision itself.</p>
+
+      <div class="callout">
+        <strong>Even if an agent is manipulated, it should not be able to bypass the security boundaries established around it.</strong> This approach also offers a way to enforce consistent security policies across different agents, models, and applications.
+      </div>
+
+      <h2>Toward a More Secure Agentic Future</h2>
+
+      <p>As AI agents become more capable, we face a fundamental choice: should we continue relying primarily on making individual agents safer, or should we also rethink the systems in which they operate?</p>
+
+      <p>Our work argues for the latter. There are still important challenges to address, from defining context-aware policies to enforcing them efficiently across dynamic multi-agent environments. Our proposed architecture is a starting point for exploring these questions.</p>
+
+      <p>But the broader lesson from networking is clear: secure systems are not built by assuming every component will always behave correctly. They are built with independent enforcement, limited privileges, and well-defined trust boundaries.</p>
+
+      <p><strong>The future of trustworthy AI is not just about building agents we can trust. It's about building systems that remain secure even when agents make mistakes.</strong></p>
+
+    </div>
+
+    <div class="article-footer">
+      <p><strong>Read the paper:</strong> <a href="https://arxiv.org/abs/2608.12172" target="_blank" rel="noopener noreferrer">Rethinking Agent Security as a Networking Problem</a></p>
+      <p style="margin-top: 8px;">We welcome discussions and collaborations on AI agent security, network-inspired security architectures, and context-aware policy enforcement. Feel free to reach out at <a href="mailto:tranv@uchicago.edu">tranv@uchicago.edu</a>.</p>
+    </div>
+
+    <div class="footer">
+      <div class="social-icons">
+        <a href="mailto:tranv@uchicago.edu" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://scholar.google.com/citations?hl=en&user=glCmzXcAAAAJ" title="Google Scholar" target="_blank" rel="noopener noreferrer"><i class="ai ai-google-scholar"></i></a>
+        <a href="https://github.com/VanTranHong" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/van-tran-084b13293/" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+      <p class="footer-credit">Template from <a href="https://jonbarron.info/">Jon Barron</a></p>
+    </div>
+
+  </div>
+</body>
+</html>

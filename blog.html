@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Blog – Van Hong Tran</title>
+  <meta name="author" content="Van Hong Tran">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: #2d2d2d;
+      background: #ffffff;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ebebeb;
+      z-index: 100;
+      padding: 0 40px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-links a {
+      margin-left: 22px;
+      color: #666;
+      text-decoration: none;
+      font-size: 0.87em;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #1a1a1a; }
+    .nav-links a.active { color: #1a1a1a; font-weight: 600; }
+
+    /* ── Container ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 40px 80px;
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .page-header h1 {
+      font-size: 1.9em;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #111;
+      margin-bottom: 6px;
+    }
+    .page-header p {
+      font-size: 0.9em;
+      color: #888;
+    }
+
+    /* ── Blog post card ── */
+    .blog-post {
+      padding: 30px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .blog-post:last-of-type { border-bottom: none; }
+
+    .blog-post-inner { display: flex; flex-direction: column; gap: 9px; }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .blog-date {
+      font-size: 0.8em;
+      color: #bbb;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .blog-tag {
+      display: inline-block;
+      background: #f0f4ff;
+      border-radius: 4px;
+      padding: 1px 9px;
+      font-size: 0.76em;
+      color: #2563a8;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .blog-title {
+      font-size: 1.12em;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #111;
+      line-height: 1.4;
+    }
+    .blog-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .blog-title a:hover { color: #2563a8; }
+
+    .blog-summary {
+      font-size: 0.91em;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .blog-readmore {
+      font-size: 0.84em;
+      font-weight: 600;
+      color: #2563a8;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+      transition: gap 0.15s;
+    }
+    .blog-readmore:hover { gap: 9px; }
+    .blog-readmore::after { content: "→"; }
+
+    /* ── Coming soon placeholder ── */
+    .blog-post.coming-soon { opacity: 0.38; pointer-events: none; }
+    .blog-post.coming-soon .blog-title { font-style: italic; color: #888; }
+    .coming-soon-label {
+      font-size: 0.75em;
+      font-weight: 600;
+      color: #bbb;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: #f6f6f6;
+      border-radius: 4px;
+      padding: 1px 8px;
+    }
+
+    /* ── Links ── */
+    a { color: #2563a8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Icons bar ── */
+    .icons-bar {
+      text-align: center;
+      padding: 16px 0 20px;
+      border-bottom: 1px solid #ebebeb;
+    }
+    .icons-bar a {
+      color: #444;
+      font-size: 1.8em;
+      margin: 0 14px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .icons-bar a:hover { color: #000; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid #ebebeb;
+      text-align: center;
+    }
+    .footer-credit { font-size: 0.78em; color: #bbb; }
+    .footer-credit a { color: #bbb; }
+
+    @media (max-width: 620px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .container { padding: 40px 20px 60px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#research">Research</a>
+      <a href="index.html#publications">Publications</a>
+      <a href="index.html#service">Service</a>
+      <a href="index.html#awards">Awards</a>
+      <a href="blog.html" class="active">Blog</a>
+    </div>
+  </nav>
+
+  <!-- Social icons -->
+  <div class="icons-bar">
+    <a href="mailto:tranv@uchicago.edu" title="Email"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://scholar.google.com/citations?hl=en&user=glCmzXcAAAAJ" title="Google Scholar" target="_blank" rel="noopener noreferrer"><i class="ai ai-google-scholar"></i></a>
+    <a href="https://github.com/VanTranHong" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/van-tran-084b13293/" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+  </div>
+
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Blog</h1>
+      <p>Thoughts on AI security, privacy, and research — written for a general audience.</p>
+    </div>
+
+    <!-- =============================================
+         PUBLISHED POSTS
+         ============================================= -->
+
+    <div class="blog-post">
+      <div class="blog-post-inner">
+        <div class="blog-meta">
+          <span class="blog-date">2025</span>
+          <span class="blog-tag">AI Security</span>
+          <span class="blog-tag">AI Agents</span>
+          <span class="blog-tag">Privacy</span>
+        </div>
+        <div class="blog-title">
+          <a href="blogs/rethinking-ai-agent-security.html">Rethinking AI Agent Security: What Can We Learn from Computer Networks?</a>
+        </div>
+        <div class="blog-summary">
+          AI agents are becoming increasingly autonomous — but how do we keep them secure when they can access sensitive data, communicate with external services, and make decisions on our behalf? We explore a networking-inspired approach that places independent security enforcement around agents, rather than relying on the agents themselves to always behave safely.
+        </div>
+        <a class="blog-readmore" href="blogs/rethinking-ai-agent-security.html">Read more</a>
+      </div>
+    </div>
+
+    <!-- =============================================
+         ADD NEW POSTS ABOVE THIS LINE.
+         Copy the .blog-post block above, fill in:
+           - .blog-date  (e.g. "October 2025")
+           - .blog-tag   (repeat for multiple)
+           - .blog-title a href  → path to your post in blogs/
+           - .blog-summary
+           - .blog-readmore href → same path
+         Then create the post HTML in blogs/your-post.html
+         ============================================= -->
+
+    <!-- ── Coming soon placeholders ── -->
+
+    <div class="blog-post coming-soon">
+      <div class="blog-post-inner">
+        <div class="blog-meta">
+          <span class="coming-soon-label">Coming soon</span>
+        </div>
+        <div class="blog-title">Privacy Risks in Generative AI: What We Know and What We Don't</div>
+        <div class="blog-summary">An accessible overview of membership inference, data extraction, and what privacy-preserving techniques actually protect against.</div>
+      </div>
+    </div>
+
+    <div class="blog-post coming-soon">
+      <div class="blog-post-inner">
+        <div class="blog-meta">
+          <span class="coming-soon-label">Coming soon</span>
+        </div>
+        <div class="blog-title">How LLMs Are Being Used in Phishing Campaigns</div>
+        <div class="blog-summary">A look at how large language models are changing the threat landscape for malicious emails and what defenders can do about it.</div>
+      </div>
+    </div>
+
+    <div class="blog-post coming-soon">
+      <div class="blog-post-inner">
+        <div class="blog-meta">
+          <span class="coming-soon-label">Coming soon</span>
+        </div>
+        <div class="blog-title">Internet Censorship at Scale: Methods, Challenges, and Findings</div>
+        <div class="blog-summary">Lessons from measuring DNS censorship across countries with machine learning — what the data reveals and what it hides.</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="footer-credit">Template from <a href="https://jonbarron.info/">Jon Barron</a></p>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,294 +1,438 @@
-
 <!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-  <title>Van Tran</title>
-  
-  <meta name="author" content="Van Tran">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Van Hong Tran</title>
+  <meta name="author" content="Van Hong Tran">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: #2d2d2d;
+      background: #ffffff;
+    }
+
+    /* ── Site header (name) ── */
+    .site-header {
+      text-align: center;
+      padding: 48px 40px 20px;
+    }
+    .site-header h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #111;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ebebeb;
+      z-index: 100;
+      padding: 0 40px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-links a {
+      margin: 0 14px;
+      color: #666;
+      text-decoration: none;
+      font-size: 0.87em;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #1a1a1a; }
+
+    /* ── Container ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 40px 80px;
+    }
+
+    /* ── Header / About ── */
+    .header {
+      display: flex;
+      gap: 52px;
+      align-items: flex-start;
+      margin-bottom: 64px;
+    }
+    .header-text { flex: 1; min-width: 0; }
+    .header-photo { flex-shrink: 0; width: 175px; }
+    .header-photo img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .affiliation {
+      font-size: 0.9em;
+      color: #777;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .affiliation a { color: #555; }
+    .about-text p { margin-bottom: 12px; }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    /* ── Section headers ── */
+    section { margin-bottom: 52px; }
+    section h2 {
+      font-size: 0.75em;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #999;
+      border-bottom: 1px solid #e8e8e8;
+      padding-bottom: 9px;
+      margin-bottom: 22px;
+    }
+
+    /* ── Links ── */
+    a { color: #2563a8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Research list ── */
+    .research-list { list-style: none; }
+    .research-list li {
+      padding: 11px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.94em;
+      color: #3a3a3a;
+    }
+    .research-list li:last-child { border-bottom: none; }
+
+    /* ── Publications ── */
+    .pub-entry {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .pub-entry:last-child { border-bottom: none; }
+    .pub-img {
+      flex-shrink: 0;
+      width: 128px;
+    }
+    .pub-img img {
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #e8e8e8;
+      display: block;
+    }
+    .pub-info { flex: 1; min-width: 0; }
+    .pub-title {
+      font-weight: 600;
+      font-size: 0.94em;
+      color: #111;
+      margin-bottom: 5px;
+      line-height: 1.45;
+    }
+    .pub-authors {
+      font-size: 0.87em;
+      color: #666;
+      margin-bottom: 3px;
+    }
+    .pub-venue {
+      font-size: 0.87em;
+      color: #777;
+      font-style: italic;
+      margin-bottom: 7px;
+    }
+    .pub-award {
+      display: inline-block;
+      background: #fffbea;
+      border: 1px solid #f6d860;
+      border-radius: 3px;
+      padding: 1px 8px;
+      font-size: 0.8em;
+      color: #946c00;
+      font-weight: 500;
+      margin-bottom: 7px;
+    }
+    .pub-links a {
+      font-size: 0.85em;
+      color: #2563a8;
+      margin-right: 12px;
+      font-weight: 500;
+    }
+
+    /* ── Service ── */
+    .service-list { list-style: none; }
+    .service-list li {
+      padding: 5px 0;
+      font-size: 0.94em;
+      color: #444;
+    }
+    .service-list li::before {
+      content: "·";
+      margin-right: 8px;
+      color: #bbb;
+    }
+
+    /* ── Awards ── */
+    .award-list { list-style: none; }
+    .award-list li {
+      padding: 9px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.94em;
+      color: #3a3a3a;
+    }
+    .award-list li:last-child { border-bottom: none; }
+
+    /* ── Icons bar ── */
+    .icons-bar {
+      text-align: center;
+      padding: 16px 0 20px;
+      border-bottom: 1px solid #ebebeb;
+    }
+    .icons-bar a {
+      color: #444;
+      font-size: 1.8em;
+      margin: 0 14px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .icons-bar a:hover { color: #000; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid #ebebeb;
+      text-align: center;
+    }
+    .footer-credit {
+      font-size: 0.78em;
+      color: #bbb;
+    }
+    .footer-credit a { color: #bbb; }
+
+    /* ── Responsive ── */
+    @media (max-width: 620px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .container { padding: 40px 20px 60px; }
+      .header { flex-direction: column-reverse; gap: 24px; }
+      .header-photo { width: 130px; margin: 0 auto; }
+    }
+  </style>
 </head>
 
 <body>
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:63%;vertical-align:middle">
-              <h2 style="text-align:center">
-                <name>Van Hong Tran</name>
-			  </h2>
-			  <p style="text-align:center">
-                
-                <a href="mailto:tranv@uchicago.edu">tranv@uchicago.edu</a><br>
-                Room 269, John Crerar Library, University of Chicago, Chicago, IL
 
-              </p>
-			  <p style="text-align:center">
-                <a href="https://scholar.google.com/citations?hl=en&user=glCmzXcAAAAJ">Google Scholar</a> &nbsp/&nbsp
-                <a href="https://github.com/VanTranHong">Github</a> &nbsp/&nbsp
-                <a href="https://www.linkedin.com/in/van-tran-084b13293/">Linkedin</a>                
-              </p>
-			  <h3 style="text-align:center">
-                <name>Biography</name>
-			  </h3>
+  <!-- Site header -->
+  <div class="site-header">
+    <h1>Van Hong Tran</h1>
+  </div>
 
-              <p>
-                Welcome! I'm Van Tran, a 5th-year Ph.D. candidate at the University of Chicago working with <a href="https://people.cs.uchicago.edu/~feamster/" target="_blank" rel="noopener noreferrer">Prof. Nick Feamster</a>. What drives me is a deep commitment to protecting consumer privacy and making businesses more secure. I believe privacy shouldn't be a luxury—it should be built into the fabric of the internet. My work focuses on creating scalable, practical solutions that safeguard personal data while empowering businesses to thrive securely.
-              </p>
-			  <h3 style="text-align:center">
-                <name>Research Interest</name>
-			  </h3>
-			  <p>
-				<UL>
-                My research is driven by a mission to enhance online safety and privacy for internet users globally using ML/AI. I focus on application of machine learning for internet privacy, cybersecurity, and privacy law, including:
-				<LI> Large-scale, automated analysis of websites’ compliance with the California Consumer Privacy Act (CCPA), including dark pattern detection. 
-				<LI> Detection of censorship on a large scale through machine learning. 
-				<LI> Efficient, privacy-preserving data acquisition from private data owners. 
-				<LI> Detection and generation of enterprise phishing emails using large language models (LLMs). 
-				</UL>
-              </p>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#service">Service</a>
+      <a href="#awards">Awards</a>
+      <a href="blog.html">Blog</a>
+    </div>
+  </nav>
 
+  <!-- Social icons -->
+  <div class="icons-bar">
+    <a href="mailto:tranv@uchicago.edu" title="Email"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://scholar.google.com/citations?hl=en&user=glCmzXcAAAAJ" title="Google Scholar" target="_blank" rel="noopener noreferrer"><i class="ai ai-google-scholar"></i></a>
+    <a href="https://github.com/VanTranHong" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/van-tran-084b13293/" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+  </div>
 
+  <div class="container">
 
+    <!-- About / Header -->
+    <div class="header" id="about">
+      <div class="header-text">
+        <p class="affiliation">
+          Ph.D. Candidate &middot; University of Chicago<br>
+          <a href="mailto:tranv@uchicago.edu">tranv@uchicago.edu</a>
+        </p>
+        <div class="about-text">
+          <p>
+            Welcome! I'm Van Tran, a Ph.D. candidate at the University of Chicago, advised by
+            <a href="https://people.cs.uchicago.edu/~feamster/" target="_blank" rel="noopener noreferrer">Prof. Nick Feamster</a>
+            in the <a href="https://noise.cs.uchicago.edu/" target="_blank" rel="noopener noreferrer">NOISE Lab</a>.
+          </p>
+          <p>
+            My research lies at the intersection of <strong>machine learning, cybersecurity, and privacy</strong>,
+            with a focus on leveraging AI to address real-world security and privacy challenges while making
+            AI systems themselves more secure and trustworthy.
+          </p>
+        </div>
+      </div>
+      <div class="header-photo">
+        <a href="images/avatar.jpeg">
+          <img src="images/avatar.jpeg" alt="Van Hong Tran">
+        </a>
+      </div>
+    </div>
 
-			 
-              
-              
-            </td>
-            <td style="padding:2.5%;width:40%;max-width:40%">
-              <a href="images/avatar.jpeg"><img style="width:100%;max-width:100%" alt="profile photo" src="images/avatar.jpeg" class="hoverZoomLink"></a>
-            </td>
-          </tr>
-        </tbody>
+    <!-- Research Interests -->
+    <section id="research">
+      <h2>Research Interests</h2>
+      <ul class="research-list">
+        <li><strong>AI for Security and Privacy:</strong> Developing scalable, ML-driven techniques to detect cybersecurity threats, Internet censorship, and violations of privacy regulations, including the CCPA.</li>
+        <li><strong>Security and Privacy of Generative AI:</strong> Investigating privacy vulnerabilities in generative models, including membership inference, data extraction, and sensitive information leakage, and evaluating the effectiveness of privacy defenses.</li>
+        <li><strong>AI-Driven Cyber Threats:</strong> Measuring and characterizing the growing use of LLMs in malicious activities, particularly phishing and spam.</li>
+        <li><strong>Secure and Privacy-Preserving AI Agents:</strong> Designing fine-grained authorization and access control mechanisms to protect sensitive resources and prevent unauthorized actions in autonomous AI systems, as well as context-aware privacy safeguards to prevent sensitive information leakage in AI agents.</li>
+      </ul>
+    </section>
 
-       
+    <!-- Publications -->
+    <section id="publications">
+      <h2>Selected Publications</h2>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-			<h3 style="text-align:center">
-                <name>Selected Manuscript</name>
-			</h3>
-        </tr>
-      </tbody></table>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          
-          <tr> 
-            <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src='images/papers/darkpattern_CCPA.png' width="160">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Dark Patterns in the Opt-Out Process and Compliance with the California Consumer Privacy Act (CCPA).</papertitle>
-              <br>
-              <strong>Van Hong Tran</strong>, Aarushi Mehrotra, Ranya Sharma, Marshini Chetty, Nick Feamster, Jens Frankenreiter, Lior Strahilevitz
-              <br>
-              <em>Proceedings of the CHI Conference on Human Factors in Computing Systems, 2025</em> 
-              <br>
-             
-              <a href="https://dl.acm.org/doi/full/10.1145/3706598.3714138">[PDF]</a>
-           
-              <p></p>
-            </td>
-          </tr>
-          
-          <tr> 
-            <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src='images/papers/stacked_bar_with_not_mentioned.png' width="160">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Layered, Overlapping, and Inconsistent: A Large-Scale Analysis of the Multiple Privacy Policies and Controls of US Banks.</papertitle>
-              <br>
-              Lu Xian, <strong>Van Hong Tran</strong>, Lauren Lee, Meera Kumar, Yichen Zhang, Florian Schaub
-              <br>
-              <em>Proceedings of the ACM SIGSAC Conference on Computer and Communications Security, 2025</em><strong>[ Distinguished Paper Award ]</strong>
-              <br>
-              <a href="https://dl.acm.org/doi/abs/10.1145/3719027.3765072">[PDF]</a>
-              <p></p>
-            </td>
-          </tr>
+      <div class="pub-entry">
+        <div class="pub-img">
+          <img src="images/papers/privacy_leakage.png" alt="">
+        </div>
+        <div class="pub-info">
+          <div class="pub-title">Quantifying the privacy implications of high-fidelity synthetic network traffic</div>
+          <div class="pub-authors"><strong>Van Hong Tran</strong>, Shinan Liu, Tian Li, Nick Feamster</div>
+          <div class="pub-venue">ACM Internet Measurement Conference, 2026</div>
+          <div class="pub-links"><a href="https://dl.acm.org/doi/abs/10.1145/3777912.3839833">PDF</a></div>
+        </div>
+      </div>
 
-          <tr> 
-            <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src='images/papers/by_email_cat.png' width="160">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Do spammers dream of electric sheep? characterizing the prevalence of LLM-generated malicious emails.</papertitle>
-              <br>
-              Wei Hao, <strong>Van Hong Tran</strong>, Vincent Rideout, Zixi Wang, AnMei Dasbach-Prisk, MH Afifi, Junfeng Yang, Ethan Katz-Bassett, Grant Ho, Asaf Cidon
-              <br>
-              <em>Proceedings of the ACM Internet Measurement Conference, 2025</em>
-              <br>
-              <a href="https://dl.acm.org/doi/abs/10.1145/3730567.3732922">[PDF]</a>
-              <p></p>
-            </td>
-          </tr>
+      <div class="pub-entry">
+        <div class="pub-img">
+          <img src="images/papers/stacked_bar_with_not_mentioned.png" alt="">
+        </div>
+        <div class="pub-info">
+          <div class="pub-title">Layered, Overlapping, and Inconsistent: A Large-Scale Analysis of the Multiple Privacy Policies and Controls of US Banks</div>
+          <div class="pub-authors">Lu Xian, <strong>Van Hong Tran</strong>, Lauren Lee, Meera Kumar, Yichen Zhang, Florian Schaub</div>
+          <div class="pub-venue">ACM Conference on Computer and Communications Security (CCS), 2025</div>
+          <div class="pub-award">Distinguished Paper Award</div>
+          <div class="pub-links"><a href="https://dl.acm.org/doi/abs/10.1145/3719027.3765072">PDF</a></div>
+        </div>
+      </div>
 
-          <tr> 
-            <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src='images/papers/spacetime_CCPA.png' width="160">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Measuring Compliance with the California Consumer Privacy Act Over Space and Time.</papertitle>
-              <br>
-              <strong>Van Hong Tran</strong>, Aarushi Mehrotra, Marshini Chetty, Nick Feamster, Jens Frankenreiter, Lior Strahilevitz
-              <br>
-              <em>Proceedings of the CHI Conference on Human Factors in Computing Systems, 2024</em>
-              <br>
-              <a href="https://dl.acm.org/doi/pdf/10.1145/3613904.3642597">[PDF]</a>
-              <p></p>
-            </td>
-          </tr>
+      <div class="pub-entry">
+        <div class="pub-img">
+          <img src="images/papers/by_email_cat.png" alt="">
+        </div>
+        <div class="pub-info">
+          <div class="pub-title">Do spammers dream of electric sheep? Characterizing the prevalence of LLM-generated malicious emails</div>
+          <div class="pub-authors">Wei Hao, <strong>Van Hong Tran</strong>, Vincent Rideout, Zixi Wang, AnMei Dasbach-Prisk, MH Afifi, Junfeng Yang, Ethan Katz-Bassett, Grant Ho, Asaf Cidon</div>
+          <div class="pub-venue">ACM Internet Measurement Conference, 2025</div>
+          <div class="pub-links"><a href="https://dl.acm.org/doi/abs/10.1145/3730567.3732922">PDF</a></div>
+        </div>
+      </div>
 
-          <tr> 
-            <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src='images/papers/censorship.png' width="160">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Augmenting Rule-based DNS Censorship Detection at Scale with Machine Learning.</papertitle>
-              <br>
-              <strong>Van Tran</strong>*,Vinod Yegneswaran Jacob Alexander Markson Brown*, Xi Jiang*,  Arjun Nitin Bhagoji, Nguyen Phong Hoang, Nick Feamster, Prateek Mittal
-              <br>
-              <em>29th ACM SIGKDD Conference on Knowledge Discovery & Data Mining (KDD), 2023</em>
-              <br>
-              <a href="https://dl.acm.org/doi/abs/10.1145/3580305.3599775">[PDF]</a>  
-              <p></p>
-            </td>
-          </tr>
-          
-          
-          <tr> 
-            <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src='images/papers/mycroft.png' width="160">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>MYCROFT: Towards Effective and Efficient External Data Augmentation.</papertitle>
-              <br>
-              <strong>Van Tran </strong>*, Zain Sarwar*, Arjun Nitin Bhagoji, Nick Feamster, Ben Y Zhao, Supriyo Chakraborty
-              <br>
-            
-              <a href="https://arxiv.org/pdf/2410.08432">[PDF]</a>
-              <p></p>
-            </td>
-          </tr>
-          <tr> 
-            <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src='images/papers/tukmenistan.png' width="160">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Measuring and evading turkmenistan’s internet censorship: A case study in large-scale measurements of a low-penetration country</papertitle>
-              <br>
-              Sadia Nourin, <strong>Van Tran</strong>, Xi Jiang, Kevin Bock, Nick Feamster, Nguyen Phong Hoang, Dave Levin
-              <br>
-              <em>Proceedings of the ACM Web Conference 2023</em>
-              <br>
-              <a href="https://dl.acm.org/doi/pdf/10.1145/3543507.3583189">[PDF]</a>
-              <p></p>
-            </td>
-          </tr>
-          
+      <div class="pub-entry">
+        <div class="pub-img">
+          <img src="images/papers/censorship.png" alt="">
+        </div>
+        <div class="pub-info">
+          <div class="pub-title">Augmenting Rule-based DNS Censorship Detection at Scale with Machine Learning</div>
+          <div class="pub-authors"><strong>Van Tran</strong>*, Vinod Yegneswaran, Jacob Alexander Markson Brown*, Xi Jiang*, Arjun Nitin Bhagoji, Nguyen Phong Hoang, Nick Feamster, Prateek Mittal</div>
+          <div class="pub-venue">ACM SIGKDD Conference on Knowledge Discovery &amp; Data Mining (KDD), 2023</div>
+          <div class="pub-links"><a href="https://dl.acm.org/doi/abs/10.1145/3580305.3599775">PDF</a></div>
+        </div>
+      </div>
 
-					
-        </tbody></table>
+      <div class="pub-entry">
+        <div class="pub-img">
+          <img src="images/papers/tukmenistan.png" alt="">
+        </div>
+        <div class="pub-info">
+          <div class="pub-title">Measuring and evading Turkmenistan's internet censorship: A case study in large-scale measurements of a low-penetration country</div>
+          <div class="pub-authors">Sadia Nourin, <strong>Van Tran</strong>, Xi Jiang, Kevin Bock, Nick Feamster, Nguyen Phong Hoang, Dave Levin</div>
+          <div class="pub-venue">ACM Web Conference (WWW), 2023</div>
+          <div class="pub-links"><a href="https://dl.acm.org/doi/pdf/10.1145/3543507.3583189">PDF</a></div>
+        </div>
+      </div>
 
+      <div class="pub-entry">
+        <div class="pub-img">
+          <img src="images/papers/darkpattern_CCPA.png" alt="">
+        </div>
+        <div class="pub-info">
+          <div class="pub-title">Dark Patterns in the Opt-Out Process and Compliance with the California Consumer Privacy Act (CCPA)</div>
+          <div class="pub-authors"><strong>Van Hong Tran</strong>, Aarushi Mehrotra, Ranya Sharma, Marshini Chetty, Nick Feamster, Jens Frankenreiter, Lior Strahilevitz</div>
+          <div class="pub-venue">ACM CHI Conference on Human Factors in Computing Systems, 2025</div>
+          <div class="pub-links"><a href="https://dl.acm.org/doi/full/10.1145/3706598.3714138">PDF</a></div>
+        </div>
+      </div>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-			<h3 style="text-align:center">
-                <name>Professional Service</name>
-			</h3>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            
-            <p>
-			<strong>Reviewer</strong>
-              <UL>
-                <LI>International Conference on Learning Representations (ICLR) 2025
-                <LI>Computer Human Interaction (CHI) 2025
-			</UL>
-			<strong> Teaching Assistant </strong>
-			<UL>
-                <LI> Creative Coding, University of Chicago
-                <LI>  System Programming I, University of Chicago
-				<LI> Introduction of Computing, I & II, Colgate University
-				<LI> Computer Organization, Colgate University
-			</UL>
-			
-               
-               
-                      
-    
-            </p>
-          </td>
-        </tr>
-      </tbody></table>
+      <div class="pub-entry">
+        <div class="pub-img">
+          <img src="images/papers/spacetime_CCPA.png" alt="">
+        </div>
+        <div class="pub-info">
+          <div class="pub-title">Measuring Compliance with the California Consumer Privacy Act Over Space and Time</div>
+          <div class="pub-authors"><strong>Van Hong Tran</strong>, Aarushi Mehrotra, Marshini Chetty, Nick Feamster, Jens Frankenreiter, Lior Strahilevitz</div>
+          <div class="pub-venue">ACM CHI Conference on Human Factors in Computing Systems, 2024</div>
+          <div class="pub-links"><a href="https://dl.acm.org/doi/pdf/10.1145/3613904.3642597">PDF</a></div>
+        </div>
+      </div>
 
+      <div class="pub-entry">
+        <div class="pub-img">
+          <img src="images/papers/mycroft.png" alt="">
+        </div>
+        <div class="pub-info">
+          <div class="pub-title">MYCROFT: Towards Effective and Efficient External Data Augmentation</div>
+          <div class="pub-authors"><strong>Van Tran</strong>*, Zain Sarwar*, Arjun Nitin Bhagoji, Nick Feamster, Ben Y Zhao, Supriyo Chakraborty</div>
+          <div class="pub-venue">Workshop on ML for Systems at NeurIPS, 2025</div>
+          <div class="pub-links"><a href="https://arxiv.org/pdf/2410.08432">PDF</a></div>
+        </div>
+      </div>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <h3 style="text-align:center">
-                <name>Awards and Achievements</name>
-			</h3>
-            <p>
-				<UL>
-					<LI> <em>Crerar Fellowship</em>, University of Chicago, IL 2021
-        
-					<LI> <em>Contextual Integrity (CI) Travel Grant</em>, ($1,500), PrivaCI, 2023 
-        
-					<LI> <em>The Award for Excellence in Computer Science</em>, Colgate University, 2021,
-				Awarded to top 5 Computer Science seniors recognized for excellent performance in academics and research 
-        
-					<LI> <em>Charles A. Dana Scholar</em>, Colgate University, 2020,
-				Awarded to top 20 students with excellent performance in academics (GPA≥ 4.0).
+    </section>
 
-					<LI> <em>Leadership Excellence Award</em>, Colgate University, NY<br>
-			</UL>
+    <!-- Professional Service -->
+    <section id="service">
+      <h2>Professional Service</h2>
+      <ul class="service-list">
+        <li>Reviewer &mdash; International Conference on Learning Representations (ICLR) 2025</li>
+        <li>Reviewer &mdash; ACM CHI Conference on Human Factors in Computing Systems, 2025</li>
+      </ul>
+    </section>
 
-            </p>
-          </td>
-        </tr>
-      </tbody></table>
-	  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-		<tr>
-		  <h3 style="text-align:center">
-			  <name>What's New?</name>
-		  </h3>
-		<td style="padding:20px;width:100%;vertical-align:middle">
-		  
-		  <p>
-			<UL>
-			  
-			  <LI>Our paper <a href = "https://arxiv.org/pdf/2410.08432">MYCROFT: Towards Effective and Efficient External Data Augmentation</a> has been accepted by Workshop on ML for Systems at NeurIPS, 2025.
-			  <LI><strong> [Oct 24, 2024] </strong>Honored to present my ongoing work about Automatic detection of dark patterns in CCPA opt-out process at PLSC 2025!
-			  <LI>Excited to become a first time reviewer of CHI 2025!</em>
-			  <LI>Excited to become a first time reviewer of ICLR 2025!
-			</UL>
-					
-  
-		  </p>
-		</td>
-	  </tr>
-	</tbody></table>
+    <!-- Awards -->
+    <section id="awards">
+      <h2>Awards &amp; Achievements</h2>
+      <ul class="award-list">
+        <li><em>Crerar Fellowship</em>, University of Chicago, 2021</li>
+        <li><em>Contextual Integrity (CI) Travel Grant</em> ($1,500), PrivaCI, 2023</li>
+        <li><em>Award for Excellence in Computer Science</em>, Colgate University, 2021 &mdash; Awarded to top 5 CS seniors for excellence in academics and research</li>
+        <li><em>Charles A. Dana Scholar</em>, Colgate University, 2020 &mdash; Awarded to top 20 students with GPA &ge; 4.0</li>
+        <li><em>Leadership Excellence Award</em>, Colgate University</li>
+      </ul>
+    </section>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:0px">
-              <br>
-              <p style="text-align:right;font-size:small;">
-                Website template from <a href="https://jonbarron.info/"> Jon Barron.</a> 
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-		
+    <!-- Footer -->
+    <div class="footer">
+      <p class="footer-credit">Template from <a href="https://jonbarron.info/">Jon Barron</a></p>
+    </div>
 
-
-
-      </td>
-    </tr>
-  </table>
+  </div>
 </body>
-
 </html>
